@@ -1,17 +1,28 @@
-
-
-<div class="contianer">
-    <div class="row">
+<div class="contianer p-4 text-center">
+    <div class="row" *ngIf="loginState">
         <div class="col-lg-4">
-            <a routerLink="/login">Login</a>
+            <button class='btn btn-primary' routerLink="dashboard">Dashboard</button>
         </div>
         <div class="col-lg-4">
-            <a routerLink="/register">Register</a>
+
         </div>
         <div class="col-lg-4">
-            <a routerLink="reset">Reset Password</a>
+            <button class='btn btn-primary' routerLink="logout">Logout</button>
+        </div>
+    </div>
+    <div class="row" *ngIf="!loginState">
+        <div class="col-lg-4">
+            <button class='btn btn-primary' routerLink="/login">Login</button>
+        </div>
+        <div class="col-lg-4">
+            <button class='btn btn-primary' routerLink="/register">Register</button>
+        </div>
+        <div class="col-lg-4">
+            <button  class='btn btn-primary' routerLink="reset">Reset Password</button>
         </div>
     </div>
 </div>
+
+<hr class='pb-5'>
 
 <router-outlet></router-outlet>

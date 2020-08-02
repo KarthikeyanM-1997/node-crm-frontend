@@ -1,26 +1,29 @@
-<h1>Register</h1>
-
-<div class="contianer text-center">
+<div class="contianer text-center p-5">
     <form [formGroup]="registerForm" (submit)="register()">
-        <div class="row">
-            <div class="col-lg-6">
+        <b>Register</b>
+        <div class="row p-3">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-3">
                 Email ID
             </div>
-            <div class="col-lg-6">
-                <input type=text formControlName="email" />
+            <div class="col-lg-3">
+                <input class="form-control" type=text formControlName="email" />
             </div>
+            <div class="col-lg-3"></div>
         </div>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-3">
                 Password
             </div>
-            <div class="col-lg-6">
-                <input type="password" formControlName="pass" />
+            <div class="col-lg-3">
+                <input class="form-control" type="password" formControlName="pass" />
             </div>
+            <div class="col-lg-3"></div>
         </div>
-        <div class="class">
+        <div class="row p-3">
             <div class="col-lg-12">
-                <button type="submit" [disabled]="!registerForm.valid">Register</button>
+                <button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid">Register</button>
             </div>
         </div>
     </form>

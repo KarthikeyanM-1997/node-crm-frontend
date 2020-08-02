@@ -5,6 +5,7 @@ import { Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from './../../environments/environment';
+import { UnifiedServiceService } from '../unified-service.service';
 
 @Component({
   selector: 'app-register',
@@ -17,15 +18,18 @@ export class RegisterComponent implements OnInit {
 
   errorMessage = "";
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private user: UnifiedServiceService) {
     this.registerForm = this.formBuilder.group({
       email: ['', Validators.email],
       pass: ['', Validators.required]
     });
   }
 
-  ngOnInit(): void {
 
+  loginState = false;
+
+  ngOnInit(): void {
+    this.user.currentLoginState.subscribe(state => this.loginState = state);
   }
 
   register() {

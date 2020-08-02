@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            Name <input class="form-control" [(ngModel)]="newLeadName" />
+            <br>
+            Notes <input class="form-control" [(ngModel)]="newLeadNotes" />
+            <br>
+            <button (click)="createLead()" class='btn btn-outline-primary'>New Lead</button> {{leadMessage}}
+        </div>
+        <div class="col-lg-4 text-center">
+            <div *ngIf="!showOnlyOwnLeads">
+                Select Employee
+                <select id='employeeSelectBox' class="form-control" [(ngModel)]="selectedEmployee">
+                    <option *ngFor="let item of assignedEmployees" value='{{item}}'>{{item}}</option>
+                </select>
+                <br>
+                <button (click)="getEmployeeLeads()" class='btn btn-outline-primary'>Show Employee Leads</button>
+            </div>
+
+
+        </div>
+        <div class="col-lg-4 text-center">
+            <button (click)="getOwnLeads()" class='btn btn-outline-primary'>Show Personal Leads</button>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-lg-12 text-center">
+            <table class='align-center'>
+                <tr>
+                    <th style="min-width:200px">Name</th>
+                    <th style="min-width:200px">Note</th>
+                    <th style="min-width:200px">Status</th>
+                    <th style="min-width:200px">Edit Lead</th>
+                </tr>
+                <tr *ngFor="let item of leadNames; let i = index">
+                    <td>{{item}}</td>
+                    <td>{{leadNotes[i]}}</td>
+                    <td>{{leadStatuses[i]}}</td>
+                    <td><button class="btn btn-sm btn-outline-primary" (click)="open(i)">Edit</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

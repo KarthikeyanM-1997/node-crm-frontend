@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4 p-3">
+            Assign Employee as Manager
+            <br>
+            <select class="form-control" id='managerSelectBox' [(ngModel)]="selectedManager">
+                <option *ngFor="let item of unassignedEmployees" value='{{item}}'>{{item}}</option>
+            </select>
+
+        </div>
+        <div class="col-lg-4 p-3">
+            <br>
+            <button class='btn btn-primary' (click)="assignAsManager()">Assign Manager</button>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-lg-12 p-3">
+            <div class="text-center">
+                Assign employee to manager
+            </div>
+            <br>
+            Manager
+            <select class="form-control" id='managerSelectBox2' [(ngModel)]="selectedManager2">
+                <option *ngFor="let item of managers" value='{{item}}'>{{item}}</option>
+            </select>
+            Employee
+            <select class="form-control" id='employeeSelectBox2' [(ngModel)]="selectedEmployee2">
+                <option *ngFor="let item of unassignedEmployees" value='{{item}}'>{{item}}</option>
+            </select>
+            <button class='btn btn-primary m-3' (click)="assignRelation()">Assign</button>
+        </div>
+    </div>
+</div>
+
+<hr>
