@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UnifiedServiceService } from './unified-service.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,12 @@ export class AppComponent implements OnInit {
 
   loginState = false;
 
-  constructor(private user: UnifiedServiceService) {
+  constructor(private user: UnifiedServiceService, private titleService: Title) {
+    this.setTitle("Simple CRM Tool");
+  }
 
+  public setTitle( newTitle: string) {
+    this.titleService.setTitle( newTitle );
   }
 
   ngOnInit(): void {

@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
 
   errorMessage = "";
 
+  guestMsg = "Guest Login";
+
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private user: UnifiedServiceService, private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.email],
@@ -30,6 +32,31 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.user.currentLoginState.subscribe(state => this.loginState = state);
+  }
+
+  guestLogin(){
+    this.errorMessage = "";
+    this.guestMsg = "Logging In...";
+    var body = { email: "karthikeyan1997@gmail.com", pass: "apple" };
+    console.log(body);
+    this.http.post(environment.apiURL + "/login", body, { responseType: 'json' }).subscribe((data) => {
+      //data = JSON.parse(data);
+      if(data['message'] === "Valid login"){
+        this.errorMessage = "Successful Login";
+        this.user.setLogInState(true);
+        this.user.setToken(data["token"]);
+        this.router.navigate(['/dashboard']);
+        this.guestMsg = "Logged In !";
+      }
+      else{
+        this.errorMessage = data["message"];
+        this.guestMsg = "Guest Login";
+      }
+      
+    }, (error) => {
+      console.log(error);
+      this.errorMessage = error.error;
+    });
   }
 
   login() {
